@@ -2,17 +2,37 @@ import mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
 
-const PostSchema = new mongoose.Schema({
-    name: String,
-    captured: String,
-    author: {
-        type: String,
+const PostSchema = new mongoose.Schema(
+    {
+        img: {
+            data: Buffer,
+            contentType: String,
+        },
+        name: {
+            type: String,
+            default: "unnamed file",
+        },
+        captured_by: {
+            type: String,
+            default: "anonymous",
+        },
+        device_captured: {
+            type: String,
+            default: "unknown device",
+        },
+        faces: {
+            type: [{ type: String, default: "landscape // anonymous" }],
+        },
+        location: {
+            type: String,
+            default: "unknown location",
+        },
+        // likes: future
     },
-    img: {
-        data: Buffer,
-        contentType: String,
+    {
+        timestamps: true,
     },
-});
+);
 
 const myDB = mongoose.connection.useDb("phntmz-rework");
 
