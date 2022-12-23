@@ -4,6 +4,9 @@
     "description": "",
     "type": "module",
     "main": "index.js",
+    "engines": {
+        "node": "14.x"
+    },
     "scripts": {
         "start": "cross-env nodemon index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,4 +25,3 @@
         "cross-env": "^7.0.3"
     }
 }
-
