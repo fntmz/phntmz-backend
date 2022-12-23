@@ -1,1 +1,1 @@
-web : cross-env nodemon index.js
+web : node index.js
