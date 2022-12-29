@@ -23,7 +23,7 @@ const PostSchema = new mongoose.Schema(
         faces: {
             type: [{ type: String, default: "landscape // anonymous" }],
         },
-        location: {
+        location_captured: {
             type: String,
             default: "unknown location",
         },

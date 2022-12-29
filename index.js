@@ -29,7 +29,7 @@ mongoose
 
 // API
 app.use("/api/post", PostRoutes);
-app.use("/api/credit", CreditRoutes);
+app.use("/api/people", CreditRoutes);
 
 app.listen(port, () => {
     console.log(`App is operating on port ${port}`);
