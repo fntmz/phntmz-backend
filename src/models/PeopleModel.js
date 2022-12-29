@@ -21,6 +21,6 @@ const PeopleSchema = new mongoose.Schema({
 
 const myDB = mongoose.connection.useDb("phntmz-rework");
 
-const PeopleModel = myDB.model("people", PeopleSchema, "People");
+const PeopleModel = myDB.model("People", PeopleSchema, "people");
 
 export default PeopleModel;
