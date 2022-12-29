@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import PostRoutes from "./src/routes/PostRoutes.js";
-import CreditRoutes from "./src/routes/CreditRoutes.js";
+import PeopleRoutes from "./src/routes/PeopleRoutes.js";
 
 const app = express();
 
@@ -29,7 +29,7 @@ mongoose
 
 // API
 app.use("/api/post", PostRoutes);
-app.use("/api/people", CreditRoutes);
+app.use("/api/people", PeopleRoutes);
 
 app.listen(port, () => {
     console.log(`App is operating on port ${port}`);
