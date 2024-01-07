@@ -1,36 +1,41 @@
-import bodyParser from "body-parser";
 import express from "express";
-import mongoose from "mongoose";
 import cors from "cors";
+import path from "path";
 
-import PostRoutes from "./src/routes/PostRoutes.js";
-import PeopleRoutes from "./src/routes/PeopleRoutes.js";
+import postsRoutes from "./src/routes/postsRoutes.js";
+import postsMediaRoutes from "./src/routes/postsMediaRoutes.js";
+
+import { con } from "./environment.js";
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+    //   con.query("SELECT * FROM `persons`", function (err, result, fields) {
+    //     if (err) throw err;
+    //     console.log(result);
+    //   });
+});
 
 const app = express();
-
+app.use(express.json());
 app.use(cors());
 
-app.use(bodyParser.json({ limit: "100mb" }));
+app.use("/api/posts", postsRoutes);
+app.use("/api/postsMedia", postsMediaRoutes);
 
-app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
+app.use(
+    "/public/postsImages",
+    express.static(path.join(__dirname, "public/postsImages")),
+);
 
-const port = process.env.PORT || 3000;
-
-const url_mongo =
-    "mongodb+srv://phntmz:9i0oUPEGOzu1fs7D@cluster0.gcy6zuj.mongodb.net/?retryWrites=true&w=majority";
-mongoose
-    .connect(url_mongo, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => {
-        console.log("database connected");
-    })
-    .catch((error) => {
-        console.log("database not found", error);
-    });
-
-// API
-app.use("/api/post", PostRoutes);
-app.use("/api/people", PeopleRoutes);
+const port = process.env.PORT || 8306;
 
 app.listen(port, () => {
-    console.log(`App is operating on port ${port}`);
+    console.log(`Server is listening on port ${port}`);
 });
