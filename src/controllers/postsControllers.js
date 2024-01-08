@@ -3,7 +3,7 @@ import { con } from "../../environment.js";
 export const createPosts = async (req, res, next) => {
     try {
         console.log(req.body);
-        const query = `INSERT INTO post ( media_url, author, caption ) VALUES ("${req.body?.media_url}","${req.body?.author}","${req.body?.caption}");`;
+        const query = `INSERT INTO posts ( media_url, author_id, description ) VALUES ("${req.body?.media_url}","${req.body?.author_id}","${req.body?.description}");`;
 
         con.query(query, function (err, result) {
             if (err)
@@ -27,7 +27,7 @@ export const createPosts = async (req, res, next) => {
 export const getAllPosts = async (req, res, next) => {
     try {
         console.log(req.body);
-        const query = `SELECT * FROM post;`;
+        const query = `SELECT * FROM posts;`;
 
         con.query(query, function (err, result) {
             console.log(result);
@@ -54,7 +54,7 @@ export const searchPosts = async (req, res, next) => {
         console.log(req.body);
         var selectField = req.body._field || "*";
         var querySearch = req.body.query;
-        const query = `SELECT ${selectField} FROM post WHERE ${querySearch};`;
+        const query = `SELECT ${selectField} FROM posts WHERE ${querySearch};`;
         con.query(query, function (err, result) {
             console.log(result);
             if (err)
@@ -92,7 +92,7 @@ export const updatePosts = async (req, res, next) => {
             }
         }
         queryUpdate += `update_at = current_timestamp()`;
-        const query = `UPDATE post SET ${queryUpdate}  WHERE id=${req.body?.id};`;
+        const query = `UPDATE posts SET ${queryUpdate}  WHERE id=${req.body?.id};`;
         console.log(query);
         con.query(query, function (err, result) {
             console.log(result);
@@ -118,7 +118,7 @@ export const updatePosts = async (req, res, next) => {
 export const deletePosts = async (req, res, next) => {
     try {
         console.log(req.body);
-        const query = `DELETE FROM post WHERE id=${req.body?.id};`;
+        const query = `DELETE FROM posts WHERE id=${req.body?.id};`;
         console.log(query);
         con.query(query, function (err, result) {
             console.log(result);

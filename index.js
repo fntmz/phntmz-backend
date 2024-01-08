@@ -30,8 +30,8 @@ app.use("/api/posts", postsRoutes);
 app.use("/api/postsMedia", postsMediaRoutes);
 
 app.use(
-    "/public/postsImages",
-    express.static(path.join(__dirname, "public/postsImages")),
+    "/public/postsMedia",
+    express.static(path.join(__dirname, "public/postsMedia")),
 );
 
 const port = process.env.PORT || 8306;

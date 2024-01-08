@@ -12,7 +12,7 @@ const FileFilter = (req, file, cb) => {
 };
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "public/postsImages");
+        cb(null, "public/postsMedia");
     },
     filename: function (req, file, cb) {
         cb(
@@ -37,7 +37,7 @@ export const createPostsMedia = (req, res, next) => {
             });
         }
 
-        const fileUrl = `http://localhost:8306/postsImages/${req.file.filename}`;
+        const fileUrl = `http://localhost:8306/public/postsMedia/${req.file.filename}`;
 
         res.status(200).json({
             message: "200 success upload",
