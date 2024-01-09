@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 
-import postsRoutes from "../src/routes/postsRoutes.js";
-import postsMediaRoutes from "../src/routes/postsMediaRoutes.js";
+import postsRoutes from "./src/routes/postsRoutes.js";
+import postsMediaRoutes from "./src/routes/postsMediaRoutes.js";
 
 import { con } from "../environment.js";
 
